@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PSTP">
+
+<select id="getStudentDetails" parameterType="String" resultType="studentModel">
+	select * from (select name, trainingbatchid, collegecourseid, registrationid,fathername, (address).doorno,(address).pincode,(address).street,(address).villagename,(address).mandalname,(address).districtname,(address).statename, gender, dob , aadhaar, phone, email, startdate,enddate,districtid from apssdc.batch_students where registrationid=#{registrationId} ) t1
+	left join
+	(select * from apssdc.student_education_info where registrationid=#{registrationId})t2 on t1.registrationid = t2.registrationid
+
+</select>
+
+<select id="getBatchDetails" parameterType = "Integer" resultType="trainingBatchModel" >
+	select * from apssdc.training_batches where id= #{trainingBatchId}
+</select>
+
+<select id="getBatchList" parameterType="Integer" resultType="trainingBatchModel">
+	
+	select * from apssdc.training_batches where collegeid= #{collegeId} and trainingprogramid = 12
+	
+</select>
+
+<select id="studentStatusInEducation" parameterType="String" resultType="Integer">
+	select count(registrationid) from apssdc.student_education_info where registrationid = #{student.registrationId};
+	<!-- select case when registrationid= #{registrationId} then 1 else 0 end from  apssdc.student_education_info where registrationid=#{registrationId} -->
+</select>
+	<!-- <insert id="training_batches" parameterType="studentModel">
+	INSERT INTO
+	apssdc.training_batches(partnerid,collegeid,startdate,enddate,programid, trainingProgramId)
+	VALUES(#{partnerId},#{collegeId},'2015-12-14','2016-03-31',#{courseId}, 12);
+	</insert>
+	
+	<select id="batchId" parameterType="studentModel" resultType="Integer">
+		SELECT id from apssdc.training_batches WHERE partnerid=#{partnerId} AND collegeid=#{collegeId} AND startdate='2015-12-14' AND enddate='2016-03-31' AND programid=#{courseId}
+	</select> -->
+	
+	<insert id="insertStudentDetails" parameterType="map">
+		INSERT INTO apssdc.batch_students(name, trainingbatchid, collegecourseid, registrationid,fathername, address, gender, dob , aadhaar, phone, email, startdate,enddate,districtid) 
+		VALUES
+		(
+		#{student.name}, #{student.newBatchId} , #{student.graduationBranch}, #{student.registrationId}, #{student.fathername}, ROW(#{student.pincode}, #{student.doorno},#{student.street}, #{student.villageName}, #{student.mandalName}, #{student.districtName}, #{student.stateName}), #{student.gender},to_date(#{student.dob},'yyyy-MM-dd'), #{student.aadhaar},
+		#{student.phone},#{student.email},'2015-12-14','2016-03-31',6
+		)
+	</insert>
+	
+	<update id="updateBatchId"  parameterType="trainingBatchModel">
+	
+		UPDATE apssdc.batch_students SET trainingbatchid  = #{newstudent.trainingBatchId} where registrationId = #{newstudent.registrationId}
+	
+	</update>
+	
+	<update id="updateStudentDetails" parameterType="map">
+	UPDATE  apssdc.batch_students
+	
+	SET
+	
+	name = #{student.name}, collegecourseid = #{student.graduationBranch}, fathername = #{student.fathername},address = ROW(#{student.pincode}, #{student.doorno} , #{student.street},#{student.villageName},#{student.mandalName},#{student.districtName},#{student.stateName}), gender = #{student.gender},dob = to_date(#{student.dob},'yyyy-MM-dd'), aadhaar = #{student.aadhaar},
+	phone = #{student.phone}, email = #{student.email}
+	
+	WHERE registrationid =  #{student.registrationId} and trainingbatchid=#{student.trainingBatchId};
+	</update>
+	
+	<insert id="insertEducationalDetails" parameterType="map">
+	INSERT INTO apssdc.student_education_info
+	(
+		registrationid,pgbranch,pgpercentage, pggpa, pgyear, pguniversity, pgcollege,graduationtype, graduationbranch,graduationpercentage, graduationgpa, graduationyear, graduationuniversity, graduationcollege, interinstitute,intergpa, interboard, interyear, interpercentage, sscinstitute,sscgpa,sscboard, sscyear, sscpercentage) 
+	VALUES
+	(
+	#{student.registrationId},#{student.pgBranch},#{student.pgPercentage},#{student.pgGpa},#{student.pgyear},#{student.pgUniversity},#{student.pgCollege}, #{student.graduationType}, #{student.graduationBranch},#{student.graduationPercentage},#{student.graduationGpa},#{student.graduationyear},#{student.graduationUniversity},#{student.graduationCollege},
+	#{student.interInstitute}, #{student.interGpa}, #{student.interBoard},#{student.interyear},#{student.interPercentage},#{student.sscInstitute}, #{student.sscGpa}, #{student.sscBoard},#{student.sscyear},#{student.sscPercentage}
+	)
+	</insert>
+	
+	<update id="updateEducationalDetails" parameterType="map">
+	UPDATE apssdc.student_education_info
+	 
+	SET
+	
+	registrationid = #{student.registrationId}, pgbranch = #{student.pgBranch},pgpercentage = #{student.pgPercentage},pggpa = #{student.pgGpa},pgyear = #{student.pgyear},pguniversity = #{student.pgUniversity},pgcollege = #{student.pgCollege},graduationtype = #{student.graduationType}, graduationbranch = #{student.graduationBranch},graduationpercentage = #{student.graduationPercentage},graduationgpa = #{student.graduationGpa},graduationyear = #{student.graduationyear},graduationuniversity = #{student.graduationUniversity}, graduationcollege = #{student.graduationCollege},
+	interinstitute = #{student.interInstitute}, intergpa = #{student.interGpa}, interboard = #{student.interBoard},interyear = #{student.interyear},interpercentage = #{student.interPercentage},sscinstitute = #{student.sscInstitute}, sscgpa = #{student.sscGpa}, sscboard = #{student.sscBoard},sscyear = #{student.sscyear},sscpercentage = #{student.sscPercentage}
+	
+    WHERE registrationid = #{student.registrationId}
+	</update>
+	
+
+</mapper>

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+
+<style>
+label {
+	margin-top: 6px;
+}
+
+input[type=text] {
+	margin-top: 6px;
+}
+
+h3 {
+	color: darkorange;
+}
+
+.ch {
+	font-weight: bold;
+	font-size: 15px;
+	color: gray;
+	text-shadow: 0px 0px 0px black;
+}
+</style>
+
+</head>
+<body>
+	<div class="container">
+		<div class="well">
+			<div data-ng-controller="formDataController" id="student">
+				<form name='studentAvailability' role="form" class="form-horizontal">
+					<div class='form-group row'>
+						<label class="control-label col-md-4">Student Id :</label>
+						<div class='col-md-4'>
+							<input type='text' class='form-control' id="studentId"
+								data-ng-model="data.object.registrationId">
+						</div>
+					</div>
+
+					<button type="button" class="btn btn-primary col-md-offset-4"
+						data-ng-click="getStudentDetails(data.object)">Get
+						StudentDetails</button>
+
+					<div class='form-group row' data-ng-show="status">
+							<label class="control-label col-md-offset-3 text-danger">
+								Student not registered with us,Please <b class="text-primary"><a
+									style="cursor: pointer;" onClick='showHomePage()'>Click
+										Here</a></b> to register your Student
+							</label>
+					</div>
+
+
+				</form>
+			</div>
+		</div>
+	</div>
+	<script>
+		jQuery(document).ready(function() {
+			angular.bootstrap(jQuery("#student"), [ 'formDataModule' ]);
+		});
+	</script>
+</body>
+</html>

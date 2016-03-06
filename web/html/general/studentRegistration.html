@@ -1,0 +1,739 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+
+<style>
+label {
+	margin-top: 6px;
+}
+
+input[type=text] {
+	margin-top: 6px;
+}
+
+h3 {
+	color: darkorange;
+}
+
+.ch {
+	font-weight: bold;
+	font-size: 15px;
+	color: gray;
+	text-shadow: 0px 0px 0px black;
+}
+
+
+</style>
+
+<!-- <script>
+	$(function() {
+		$("#datepicker").datepicker({
+			maxDate : new Date,
+			minDate : new Date(1793, 1, 1),
+			changeMonth : true,
+			changeYear : true,
+			yearRange : "-120:+0", // last 120 years
+			dateFormat : 'dd-mm-yy'
+		});
+	});
+</script> -->
+
+
+
+</head>
+<body>
+	<div class="container">
+		<div class="well" id="student">
+			<div data-ng-controller="formDataController" >
+				<form name='studentRegistration' role="form">
+					<div class="container">
+						<h2>Student Registeration</h2>
+						<ul class="nav nav-pills">
+							<li class="active"><a data-toggle="pill" href="#personal">Personal
+									Details</a></li>
+							<!--<li><a data-toggle="pill" href="#ssc">SSC Details</a></li>
+				    <li><a data-toggle="pill" href="#dip">INTER/DIPLOMA Details</a></li>
+				    <li><a data-toggle="pill" href="#grad">GRADUATION Details</a></li>
+					<li><a data-toggle="pill" href="#pg">PG Details</a></li>-->
+							<li><a data-toggle="pill" href="#edu">Education Details</a></li>
+							<li><a data-toggle="pill" href="#address">Address For
+									Communications</a></li>
+							<li><a data-toggle="pill" href="#select">Select Course</a></li>
+						</ul>
+
+						<div class="tab-content">
+
+							<div id="personal" class="tab-pane fade in active ">
+
+								<div class="panel panel-primary" style="margin: 10px;">
+									<div class="panel-heading text-center">
+										<span class='h3'>Personal Details<span>
+									</div>
+									<div class="panel-body" >
+										<div class='col-md-12'>
+											<div class='row'>
+												<div class='col-md-3'></div>
+												<div class='col-md-9'>
+													<div class='row'>
+														<div class='col-md-3'>
+															<label>Student Id :</label>
+														</div>
+														<div class='col-md-4'>
+															<input type='text' class='form-control' data-ng-model="data.object.registrationId" >
+														</div>
+													</div>
+
+													<div class='row'>
+														<div class='col-md-3'>
+															<label>Student Name :</label>
+														</div>
+														<div class='col-md-4'>
+															<input type='text' class='form-control' data-ng-model="data.object.name">
+														</div>
+													</div>
+
+													<!-- <div class='row'>
+														<div class='col-md-3'>
+															<label>Last Name :</label>
+														</div>
+														<div class='col-md-4'>
+															<input type='text' class='form-control' data-ng-model="data.object.lastName">
+														</div>
+													</div> -->
+
+													<div class='row'>
+														<div class='col-md-3'>
+															<label>Gender :</label>
+														</div>
+														<div class='col-md-4'>
+															<select class='form-control' data-ng-model="data.object.gender">
+																<option>Male</option>
+																<option>Female</option>
+																<option>Others</option>
+															</select>
+														</div>
+													</div>
+
+													<div class='row'>
+														<div class='col-md-3'>
+															<label>Date of Birth :</label>
+														</div>
+														<div class='col-md-4'>
+															<input type='date' class='form-control' id='datepicker' data-ng-model="data.object.dob">
+														</div>
+													</div>
+
+													<div class='row'>
+														<div class='col-md-3'>
+															<label>Guardian/Father Name :</label>
+														</div>
+														<div class='col-md-4'>
+															<input type='text' class='form-control' data-ng-model="data.object.fathername">
+														</div>
+													</div>
+
+													<div class='row'>
+														<div class='col-md-3'>
+															<label>Aadhaar Id :</label>
+														</div>
+														<div class='col-md-4'>
+															<input type='text' class='form-control' data-ng-model="data.object.aadhaar" data-ng-pattern="">
+														</div>
+													</div>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+
+							<div id="edu" class="tab-pane fade">
+
+
+								<!--<div id="ssc" class="tab-pane fade in active">-->
+								<div id="sscf" class="">
+
+									<div class="panel panel-primary  " style="margin: 10px;">
+										<div class="panel-heading text-center">
+											<span class='h3'>SSC Details <span>&#9662;</span><span>
+										</div>
+										<div id='sscp' class="panel-body ">
+
+
+											<div class='col-md-12'>
+												<div class='row'>
+													<div class='col-md-3'></div>
+													<div class='col-md-9'>
+														<div class='row'>
+															<div class='col-md-3'>
+																<label>SSC Institute :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.sscInstitute">
+															</div>
+														</div>
+														<div class = "row">
+															<div class="col-md-3">
+																<input type="radio" name="ssc" id="ssc_gpa" value="ssc_gpa">SSC GPA
+															</div>
+															<div class="col-md-3">
+																<input type="radio" name="ssc" id="ssc_percentage" value="ssc_percentage">SSC Percentage
+															</div>
+														</div>
+														<div class='row' id="sscGpa">
+															<div class='col-md-3'>
+																<label>SSC GPA :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.sscGpa">
+																
+															</div>
+														</div>
+
+														<div class='row' id="sscPercentage">
+															<div class='col-md-3'>
+																<label>SSC Percentage :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.sscPercentage">
+															</div>
+														</div>
+
+
+														<div class='row'>
+															<div class='col-md-3'>
+																<label>SSC Board :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.sscBoard">
+															</div>
+														</div>
+
+														<div class='row'>
+															<div class='col-md-3'>
+																<label>SSC Year :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.sscyear">
+															</div>
+														</div>
+
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--<div id="dip" class="tab-pane fade in active">-->
+								<div id="dip" class="">
+
+									<div class="panel panel-primary  " style="margin: 10px;">
+										<div class="panel-heading text-center">
+											<span class='h3'>INTER / DIPLOMA Details<span>
+										</div>
+										<div class="panel-body " >
+											<div class='col-md-12'>
+												<div class='row'>
+													<div class='col-md-3'></div>
+													<div class='col-md-9'>
+														<div class='row'>
+															<div class='col-md-3'>
+																<label>Inter / Diploma Institute :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.interInstitute">
+															</div>
+														</div>
+														<div class = "row">
+															<div class="col-md-3">
+																<input type="radio" name="inter" id="inter_gpa" >Inter GPA
+															</div>
+															<div class="col-md-3">
+																<input type="radio" name="inter" id="inter_percentage" >Inter Percentage
+															</div>
+														</div>
+														<div class='row' id='interGpa'>
+															<div class='col-md-3'>
+																<label>Inter / Diploma GPA :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.interGpa">
+															</div>
+														</div>
+
+														<div class='row' id='interPercentage'>
+															<div class='col-md-3'>
+																<label>Inter / Diploma Percentage :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.interPercentage">
+															</div>
+														</div>
+
+
+														<div class='row'>
+															<div class='col-md-3'>
+																<label>Inter / Diploma Board :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.interBoard">
+															</div>
+														</div>
+
+														<div class='row'>
+															<div class='col-md-3'>
+																<label>Inter / Diploma Year :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.interyear">
+															</div>
+														</div>
+
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!--<div id="grad" class="tab-pane fade in active">-->
+								<div id="grad" class="">
+
+									<div class="panel panel-primary  " style="margin: 10px;">
+										<div class="panel-heading text-center">
+											<span class='h3'>GRADUATION Details<span>
+										</div>
+										<div class="panel-body ">
+
+
+											<div class='col-md-12'>
+												<div class='row'>
+													<div class='col-md-3'></div>
+													<div class='col-md-9'>
+														<div class='row'>
+															<div class='col-md-3'>
+																<label>Graduation Type :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.graduationType">
+															</div>
+														</div>
+
+														<div class='row'>
+															<div class='col-md-3'>
+																<label>Graduation Branch :</label>
+															</div>
+															<div class='col-md-4'>
+															<select class="form-control" data-ng-model="data.object.graduationBranch">
+																<option value="1">CSE</option>
+																<option value="2">IT</option>
+																<option value="3">ECE</option>
+																<option value="4">EEE</option>
+																<option value="5">CIVIL</option>
+																<option value="6">MECHANICAL</option>
+																<option value="7">MCA</option>
+																<option value="8">MBA</option>
+															</select>
+															</div>
+														</div>
+														
+														<div class = "row">
+															<div class="col-md-3">
+																<input type="radio" name="graduation" id="grad_gpa" >Graduation GPA
+															</div>
+															<div class="col-md-3">
+																<input type="radio" name="graduation" id="grad_percentage" >Graduation Percentage
+															</div>
+														</div> 
+														
+														<div class='row' id='gradPercentage'>
+															<div class='col-md-3'>
+																<label>Graduation Percentage :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.graduationPercentage">
+															</div>
+														</div>
+
+
+														<div class='row' id='gradGpa'>
+															<div class='col-md-3'>
+																<label>Graduation GPA :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.graduationGpa">
+															</div>
+														</div>
+
+														<div class='row'>
+															<div class='col-md-3'>
+																<label>Graduation Year :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.graduationyear">
+															</div>
+														</div>
+
+														<div class='row'>
+															<div class='col-md-3'>
+																<label>Graduation University Name :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.graduationUniversity">
+															</div>
+														</div>
+
+														<div class='row'>
+															<div class='col-md-3'>
+																<label>Graduation College Name :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.graduationCollege">
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--<div id="pg" class="tab-pane fade in active">-->
+								<div id="pg" class="">
+
+									<div class="panel panel-primary  " style="margin: 10px;">
+										<div class="panel-heading text-center">
+											<span class='h3'>PG Details<span>
+										</div>
+										<div class="panel-body " ng-app=''>
+
+
+											<div class='col-md-12'>
+												<div class='row'>
+													<div class='col-md-3'></div>
+													<div class='col-md-9'>
+														<div class='row'>
+															<div class='col-md-3'>
+																<label>PG Branch :</label>
+															</div>
+															<div class='col-md-4'>
+																<select class="form-control" data-ng-model="data.object.pgBranch">
+																<option value="1">M.Tech-CSE</option>
+																<option value="2">M.Tech-IT</option>
+																<option value="3">M.Tech-ECE</option>
+																<option value="4">M.Tech-EEE</option>
+																<option value="5">M.Tech-CIVIL</option>
+																<option value="6">M.Tech-MECHANICAL</option>
+																<option value="7">MCA</option>
+																<option value="8">MBA</option>
+															</select><!-- <input type='text' class='form-control' data-ng-model="data.object.pgBranch"> -->
+															</div>
+														</div>
+														
+														<div class = "row">
+															<div class="col-md-3">
+																<input type="radio" name="pg" id="pg_gpa" >PG GPA
+															</div>
+															<div class="col-md-3">
+																<input type="radio" name="pg" id="pg_percentage" >PG Percentage
+															</div>
+														</div> 
+														
+														<div class='row' id='pgPercentage'>
+															<div class='col-md-3'>
+																<label>PG Percentage :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.pgPercentage">
+															</div>
+														</div>
+
+														<div class='row' id='pgGpa'>
+															<div class='col-md-3'>
+																<label>PG GPA :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.pgGpa">
+															</div>
+														</div>
+
+
+														<div class='row'>
+															<div class='col-md-3'>
+																<label>PG Year :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.pgyear">
+															</div>
+														</div>
+
+														<div class='row'>
+															<div class='col-md-3'>
+																<label>PG University :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.pgUniversity">
+															</div>
+														</div>
+
+														<div class='row'>
+															<div class='col-md-3'>
+																<label>PG College Name :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.pgCollege">
+															</div>
+														</div>
+
+														<div class='row'>
+															<div class='col-md-3'>
+																<label>Email Address :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.email">
+															</div>
+														</div>
+
+														<div class='row'>
+															<div class='col-md-3'>
+																<label>Mobile Number :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.phone">
+															</div>
+														</div>
+
+														<div class='row'>
+															<div class='col-md-3'>
+																<label>Alternate Phone Number :</label>
+															</div>
+															<div class='col-md-4'>
+																<input type='text' class='form-control' data-ng-model="data.object.alternate_phno">
+															</div>
+														</div>
+
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!--<div id="address" class="tab-pane fade in active">-->
+							<div id="address" class="tab-pane fade">
+								<div class="panel panel-primary  " style="margin: 10px;">
+									<div class="panel-heading text-center">
+										<span class='h3'>Address For Communications<span>
+									</div>
+									<div class="panel-body " ng-app=''>
+										
+										<div class='col-md-12'>
+											<h3>PERMANENT ADDRESS :</h3>
+											<div class='row'>
+												<div class='col-md-3'></div>
+												<div class='col-md-9'>
+													<div class='row'>
+														<div class='col-md-3'>
+															<label>House/Door Number :</label>
+														</div>
+														<div class='col-md-4'>
+															<input type='text' class='form-control' data-ng-model="data.object.doorno">
+														</div>
+													</div>
+
+													<div class='row'>
+														<div class='col-md-3'>
+															<label>Street :</label>
+														</div>
+														<div class='col-md-4'>
+															<input type='text' class='form-control' data-ng-model="data.object.street">
+														</div>
+													</div>
+
+													<div class='row'>
+														<div class='col-md-3'>
+															<label>VillageName :</label>
+														</div>
+														<div class='col-md-4'>
+															<input type='text' class='form-control' data-ng-model="data.object.villageName">
+														</div>
+													</div>
+
+
+													<div class='row'>
+														<div class='col-md-3'>
+															<label>Mandal :</label>
+														</div>
+														<div class='col-md-4'>
+															<input type='text' class='form-control' data-ng-model="data.object.mandalName">
+														</div>
+													</div>
+
+													<div class='row'>
+														<div class='col-md-3'>
+															<label>Pincode :</label>
+														</div>
+														<div class='col-md-4'>
+															<input type='text' class='form-control' data-ng-model="data.object.pincode">
+														</div>
+													</div>
+
+													<div class='row'>
+														<div class='col-md-3'>
+															<label>District :</label>
+														</div>
+														<div class='col-md-4'>
+															<input type='text' class='form-control' data-ng-model="data.object.districtName">
+														</div>
+													</div>
+
+													<div class='row'>
+														<div class='col-md-3'>
+															<label>State :</label>
+														</div>
+														<div class='col-md-4'>
+															<input type='text' class='form-control' data-ng-model="data.object.stateName">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!--<div id="select" class="tab-pane fade">-->
+							<div id="select" class="tab-pane fade">
+
+								<div class="panel panel-primary  " style="margin: 10px;">
+									<div class="panel-heading text-center">
+										<span class='h3'>Select Course<span>
+									</div>
+									<div class="panel-body" >
+										<div class='col-md-12'>
+											<h3>CHOOSE INTRESTED COURSE :</h3>
+											<div class='row'>
+												<div class='col-md-3'></div>
+												<div class='col-md-9'>
+													<div class='row'>
+														<div class='col-md-3'>
+															<label>Select Course :</label>
+														</div>
+														<div class='col-md-4'>
+
+															<select class="form-control" data-ng-model="data.object.programid">
+																<optgroup label="CSE | IT | MCA | M.Tech ">
+																	<option value="3">PHP</option>
+																	<option value="2">JAVA</option>
+																	<option value="1">ANDROID</option>
+																	
+																</optgroup>
+
+																<optgroup label="ECE">
+																	<option value="8">VLSI</option>
+																	<option value="13">EMBEDDED</option>
+																</optgroup>
+
+																<optgroup label="EEE">
+																	<option value="8">VLSI</option>
+																	<option value="13">EMBEDDED</option>
+																	<option value="9">MATLAB</option>
+																</optgroup>
+
+																<optgroup label="CIVIL">
+																	<option value="10">AUTO DESK - REVIT
+																		(Structural)</option>
+																</optgroup>
+
+																<optgroup label="MECH">
+																	<option value="12">AUTO DESK INVENTOR</option>
+																	<option value="11">AUTO DESK NASTRAN</option>
+																</optgroup>
+
+															</select>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									<button data-ng-show="!success" type="button" class="btn btn-primary col-sm-offset-5" data-ng-click="insertStudent(data.object)">INSERT</button>
+									<button data-ng-show="success" type="button" class="btn btn-primary col-sm-offset-5" data-ng-click="updateStudent(data.object)">UPDATE</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	<script>
+		jQuery(document).ready(function() {
+			
+			jQuery('#sscGpa').hide();
+			jQuery('#sscPercentage').hide();
+			jQuery('#interGpa').hide();
+			jQuery('#interPercentage').hide();
+			jQuery('#gradGpa').hide();
+			jQuery('#gradPercentage').hide();
+			jQuery('#pgGpa').hide();
+			jQuery('#pgPrecentage').hide();
+			
+			$("input[type='radio']").change(function(){
+				var id = $(this).attr('id');
+				if(id=='ssc_gpa') {
+					jQuery('#sscPercentage').hide();
+					jQuery('#sscGpa').show();
+					
+				}else if(id=='ssc_percentage'){
+					jQuery('#sscGpa').hide();
+					jQuery('#sscPercentage').show();
+				}else if(id=='inter_gpa') {
+					
+					jQuery('#interPercentage').hide();
+					jQuery('#interGpa').show();
+				}else if(id=='inter_percentage'){
+					jQuery('#interGpa').hide();
+					jQuery('#interPercentage').show();
+				}else if(id=='grad_gpa') {
+					
+					jQuery('#gradPercentage').hide();
+					jQuery('#gradGpa').show();
+				}else if(id=='grad_percentage') {
+					jQuery('#gradGpa').hide();
+					jQuery('#gradPercentage').show();
+				}else if(id=='pg_gpa'){
+					jQuery('#pgPercentage').hide();
+					jQuery('#pgGpa').show();
+					
+				}else if(id=='pg_percentage'){
+					jQuery('#pgGpa').hide();
+					jQuery('#pgPercentage').show();
+				}else{
+					
+				}
+				
+				
+				
+			});
+			
+			angular.bootstrap(jQuery("#student"), [ 'loadingModule' ]);
+	});
+	</script>
+</body>
+</html>

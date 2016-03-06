@@ -1,0 +1,160 @@
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.amdLink
+{
+	color: #0000FF;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.amdContainerDiv 
+{
+	background-color: #FFFFFF;
+}
+
+.amdContainerDiv .amdHeader
+{
+	width: 100%;
+	height: 100px;
+	padding: 10px;
+	border-bottom: 2px solid #000000;
+	box-shadow: 2px 2px #e0e0e0;
+}
+
+.amdContainerDiv .amdHeader .amdHeaderTitle
+{
+	font-family: "Baskerville";
+	font-style: bold;
+	font-size: 50px;
+	margin-top: -10px;
+	margin-bottom: -10px;
+	text-shadow: 2px 2px #e0e0e0;
+}
+
+.amdContainerDiv .amdHeader .amdHeaderSubTitle
+{
+	font-family: "Verdana";
+	font-size: 16px;
+	font-style: bold;
+	margin: 0px;
+}
+
+.amdContainerDiv .amdFooter
+{
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	height: 40px;
+	background-color: #f5f5f5;
+	padding: 10px;
+	border-top: 1px solid #e3e3e3;
+}
+
+.amdContainerDiv .amdContentDiv 
+{
+	padding: 10px;
+}
+
+.amdContainerDiv .amdContentDiv .amdContentHeading
+{
+	font-family: "Baskerville";
+	font-style: bold;
+	font-size: 30px;
+	text-shadow: 1px 1px #e0e0e0;
+	width: 100%;
+	text-align: center;
+}
+
+.amdContainerDiv .amdContentDiv .amdContentSubHeading
+{
+	font-family: "Verdana";
+	font-style: bold;
+	font-size: 18px;
+	text-shadow: 1px 1px #e0e0e0;
+	width: 100%;
+	text-align: center;
+}
+
+.amdContainerDiv .amdContentDiv .amdReportTable 
+{
+	border: 1px solid #337ab7;
+	border-collapse: collapse;
+	color: #000000;
+	white-space: nowrap;
+}
+		
+.amdContainerDiv .amdContentDiv .amdReportTable TR TH 
+{
+	background-color: #337ab7;
+	color: #ffffff;
+	padding: 5px;
+	border: 1px solid #337ab7;
+}
+		
+.amdContainerDiv .amdContentDiv .amdReportTable TR TD 
+{
+	padding: 5px;
+	border: 1px solid #337ab7;
+}
+
+.amdContainerDiv .amdContentDiv .amdReportTable .amdReportUrl
+{
+	color: blue;
+	cursor: pointer;
+}
+
+.amdContainerDiv .amdContentDiv .amdModuleDiv
+{
+	
+}
+
+.amdContainerDiv .amdContentDiv .amdModuleDiv .amdModule
+{
+	background-color: #337ab7;
+	color: #FFFFFF;
+	padding: 10px;
+	border-radius: 4px;
+	cursor: pointer;
+	box-shadow: 2px 2px #e0e0e0;
+	margin: 5px;
+}
+
+.amdContainerDiv .amdContentDiv .amdModuleDiv .amdModule .amdModuleIcon
+{
+	background-color: #FFFFFF;
+	color: black;
+	width: 40px;
+	height: 40px;
+	border-radius: 4px;
+}
+
+.amdContainerDiv .amdContentDiv .amdModuleDiv .amdModuleTitle
+{
+	color: #FFFFFF;
+	font-weight: bold;
+	margin-left: 10px;
+}
+
+.amdContainerDiv .amdContentDiv .amdModuleDiv .amdModule .amdModuleDescription
+{
+	margin-top: 10px;
+	color: #FFFFFF;
+}
+
+.amdContainerDiv .amdContentDiv .amdFormTable 
+{
+	border: 0px;
+	border-collapse: collapse;
+	color: #000000;
+	white-space: nowrap;
+}
+		
+.amdContainerDiv .amdContentDiv .amdFormTable TR TD 
+{
+	padding: 5px;
+}

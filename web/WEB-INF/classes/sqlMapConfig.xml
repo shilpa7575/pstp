@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias alias="studentModel" type="in.apssdc.formdata.model.StudentModel" />
+		<typeAlias alias="trainingBatchModel" type="in.apssdc.formdata.model.TrainingBatchModel" />
+		<typeAlias alias="collegeModel" type="in.apssdc.formdata.model.CollegeModel" />
+		<typeAlias alias="facultyModel" type="in.apssdc.formdata.model.FacultyModel" />
+		
+		
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="in/apssdc/security/model/Upload-MyBatis.xml" />
+	</mappers>
+</configuration>
